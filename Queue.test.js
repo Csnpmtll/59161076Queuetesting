@@ -38,26 +38,26 @@ test('สร้าง queue size 1 และ dequeue เลย จะต้อ�
 });
 
 // 7. Bug
-test('Bug เพิ่มค่าว่างเข้าไปแล้วต้องเป็น false',()=>{
+test('1',()=>{
     const queue=new Queue(2);
     expect(queue.enqueue()).toBe(false);
 });
-test('Bug เพิ่มค่าจนตำแหน่งMax tail ไม่resetเป็น0',()=>{
-    const queue=new Queue(4);
+test('2',()=>{
+    const queue=new Queue(2);
+    expect(queue.head).toBe(0);
+});
+test('3',()=>{
+    const queue=new Queue(3);
     expect(queue.enqueue(1)).toBe(true);
     expect(queue.enqueue(2)).toBe(true);
     expect(queue.enqueue(3)).toBe(true);
-    expect(queue.enqueue(4)).toBe(true);
     expect(queue.dequeue()).toBe(1);
     expect(queue.dequeue()).toBe(2);
     expect(queue.enqueue(1)).toBe(true);
-    expect(queue.enqueue(2)).toBe(true);
     expect(queue.dequeue()).toBe(3);
-    expect(queue.dequeue()).toBe(4);
+    expect(queue.dequeue()).toBe(1);
     expect(queue.enqueue(5)).toBe(true);
     expect(queue.enqueue(6)).toBe(true);
-    expect(queue.dequeue()).toBe(1);
-    expect(queue.dequeue()).toBe(2);
     expect(queue.dequeue()).toBe(5);
     expect(queue.dequeue()).toBe(6);
     expect(queue.dequeue()).toBe(null);
